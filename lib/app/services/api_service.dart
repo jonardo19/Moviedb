@@ -1,10 +1,5 @@
-import 'dart:convert';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:http/http.dart' as http;
-// import 'package:get_connect/http/src/response/response.dart';
 import '../models/discover_models.dart';
-import '../models/home_models/slideshow_models.dart';
 
 class ApiService extends GetConnect {
   static String baseURL = 'https://api.themoviedb.org/3';

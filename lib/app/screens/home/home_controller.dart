@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 class SlideShowController extends GetxController {
   var isLoading = true.obs;
   var results = <Results>[].obs;
+  List<SlideShowImageModel> imageModels = [];
 
   @override
   void onInit() {
@@ -21,6 +22,12 @@ class SlideShowController extends GetxController {
       isLoading(true);
       var discoverModel = await ApiService().getDiscoverMovies();
       if (discoverModel != null) {
+        discoverModel.results?.forEach((data) {
+          imageModels.add(
+            SlideShowImageModel(image: data.backdropPath, title: data.title),
+          );
+        });
+
         results.assignAll(discoverModel.results!);
       }
     } finally {
