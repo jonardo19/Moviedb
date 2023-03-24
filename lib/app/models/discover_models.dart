@@ -1,12 +1,13 @@
-class DiscoverModels {
+class MovieResponseModel {
   int? page;
   List<Results>? results;
   int? totalPages;
   int? totalResults;
 
-  DiscoverModels({this.page, this.results, this.totalPages, this.totalResults});
+  MovieResponseModel(
+      {this.page, this.results, this.totalPages, this.totalResults});
 
-  DiscoverModels.fromJson(Map<String, dynamic> json) {
+  MovieResponseModel.fromJson(Map<String, dynamic> json) {
     page = json['page'];
     if (json['results'] != null) {
       results = <Results>[];
@@ -17,6 +18,8 @@ class DiscoverModels {
     totalPages = json['total_pages'];
     totalResults = json['total_results'];
   }
+
+  MovieResponseModel? get body => null;
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};

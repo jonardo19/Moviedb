@@ -1,66 +1,30 @@
-import 'dart:convert';
-import 'package:flutter/material.dart';
-import 'package:flutter_movie_db/app/models/discover_models.dart';
-import 'package:flutter_movie_db/app/models/home_models/slideshow_models.dart';
-import 'package:flutter_movie_db/app/services/api_service.dart';
-import 'package:get/get.dart';
-// import 'package:http/http.dart' as http;
+// import 'package:flutter_movie_db/app/models/discover_models.dart';
+// import 'package:flutter_movie_db/app/services/api_service.dart';
+// import 'package:get/get.dart';
+// // import 'package:http/http.dart' as http;
 
-class SlideShowController extends GetxController {
-  var isLoading = true.obs;
-  var results = <Results>[].obs;
-  List<SlideShowImageModel> imageModels = [];
+// class HomeController extends GetxController {
+//   final ApiService homeController = Get.put(ApiService());
 
-  @override
-  void onInit() {
-    fetchMovies();
-    super.onInit();
-  }
+//   var isLoading = false.obs;
 
-  void fetchMovies() async {
-    try {
-      isLoading(true);
-      var discoverModel = await ApiService().getDiscoverMovies();
-      if (discoverModel != null) {
-        discoverModel.results?.forEach((data) {
-          imageModels.add(
-            SlideShowImageModel(image: data.backdropPath, title: data.title),
-          );
-        });
-
-        results.assignAll(discoverModel.results!);
-      }
-    } finally {
-      isLoading(false);
-    }
-  }
-}
-// class SlideShowController extends GetxController {
-//   List listData = List<DiscoverModels>.empty().obs;
-//   var isLoding = false.obs;
-
-//   void getFilm() {
-//     listData.clear();
-//     isLoding.value = true;
-
-//     ApiService().getDiscover().then((Response response) {
-//       if (response.statusCode == 200) {
-//         final Map<String, dynamic> jsonResponse = response.body;
-//         jsonResponse.forEach((key, value) {
-//           DiscoverModels discoverModels = DiscoverModels.fromJson(value);
-//           discoverModels = value;
-//         });
-//       } else {
-//         Get.snackbar('Error', response.statusText!);
-//       }
-//       isLoding(false);
-//     });
-//   }
+//   List<Results> movies = <Results>[].obs;
+//   int page = 1;
 
 //   @override
-//   void init() {
-//     getFilm();
-
+//   void onInit() {
+//     getDiscMovies();
 //     super.onInit();
+//   }
+
+//   Future<void> getDiscMovies() async {
+//     isLoading(true);
+//     try {
+//       final results = await homeController.getDiscoverMovies(page);
+//       movies.addAll(results);
+//     } catch (e) {
+//       print(e);
+//     }
+//     isLoading(false);
 //   }
 // }
